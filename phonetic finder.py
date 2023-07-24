@@ -53,10 +53,12 @@ for row in range(start_row, ws.max_row + 1):
     time.sleep(2)
     
     print('counting=',n)
-    
-    # Save workbook and last completed row
-    wb.save('words.xlsx')
-    update_last_row(row)
+    if n==972:
+        break
+    else:
+        # Save workbook and last completed row
+        wb.save('words.xlsx')
+        update_last_row(row)
 
 # Save workbook one last time to ensure all changes are saved
 wb.save('words.xlsx')
