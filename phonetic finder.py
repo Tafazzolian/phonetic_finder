@@ -34,9 +34,8 @@ def get_last_row():
         with open('last_row.txt', 'r') as f:
             return int(f.read().strip())
     except Exception as e:
-        return 2  # default value if file doesn't exist
+        return 2
 
-# Load workbook and sheet
 wb = openpyxl.load_workbook('words.xlsx')
 ws = wb.active
 
@@ -45,10 +44,10 @@ n = start_row - 2
 
 for row in range(start_row, ws.max_row + 1):
     n += 1
-    word = ws.cell(row=row, column=2).value  # Get word
-    uk_phonetic, us_phonetic = get_phonetics(word)  # Get phonetics
-    ws.cell(row=row, column=3).value = us_phonetic  # Write US phonetics
-    ws.cell(row=row, column=4).value = uk_phonetic  # Write UK phonetics
+    word = ws.cell(row=row, column=2).value
+    uk_phonetic, us_phonetic = get_phonetics(word)
+    ws.cell(row=row, column=3).value = us_phonetic
+    ws.cell(row=row, column=4).value = uk_phonetic
     
     time.sleep(2)
     
@@ -56,7 +55,6 @@ for row in range(start_row, ws.max_row + 1):
     if n==972:
         break
     else:
-        # Save workbook and last completed row
         wb.save('words.xlsx')
         update_last_row(row)
 
